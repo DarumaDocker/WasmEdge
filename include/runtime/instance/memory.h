@@ -225,6 +225,7 @@ public:
   typename std::enable_if_t<std::is_pointer_v<T>, T>
   getPointer(uint32_t Offset, uint32_t Size = 1) const noexcept {
     using Type = std::remove_pointer_t<T>;
+    Size = 1;
     uint32_t ByteSize = static_cast<uint32_t>(sizeof(Type)) * Size;
     if (unlikely(!checkAccessBound(Offset, ByteSize))) {
       return nullptr;
